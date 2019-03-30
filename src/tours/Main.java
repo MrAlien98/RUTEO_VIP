@@ -77,17 +77,24 @@ public class Main {
 			for(int i=0; i<a.length;i++) {
 				prim=a[i].getT1()[0];
 				
-				if(a[i].getT1().length==1) {
-					ult=prim;
-				}else {
-					ult=a[i].getT1()[a[i].getT1().length-1];
+				for(int j=1; j<a.length;j++) {
+					ult=a[j].getT1()[a[j].getT1().length-1];
+					
+					
+					
+					temp=distances(ult,prim);
+					if(MaxSave > temp) {
+						MaxSave=temp;
+						candidato1=prim;
+						candidato2=ult;
+					}	
 				}
-				temp=distances(ult,prim);
-				if(MaxSave< temp) {
-					MaxSave=temp;
-					candidato1=prim;
-					candidato2=ult;
-				}		
+//				if(a[i+1].getT1().length==1) {
+//					ult=prim;
+//				}else {
+//					ult=a[i].getT1()[a[i].getT1().length-1];
+//				}
+					
 			}
 			System.out.println("("+candidato1.getPosX()+","+candidato1.getPosY()+") ("+candidato2.getPosX()+","+candidato2.getPosY()+") : "+ MaxSave );
 		}
