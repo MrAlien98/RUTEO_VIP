@@ -76,16 +76,8 @@ public class Main {
 			System.out.println("Lo siento pero, no has ingresado nada");
 			return null;
 		}else {
-			for(int i=0; i<a.length;i++) {
-<<<<<<< HEAD
-				prim=a[i].getT1()[0];	
-=======
-				
+			for(int i=0; i<a.length;i++) {	
 				prim=a[i].getT1()[0];
-	
-
-				
->>>>>>> branch 'master' of https://github.com/MrAlien98/RUTEO_VIP.git
 				for(int j=0; j<a.length;j++) {
 					if(i!=j) {
 						System.out.println(""+i +""+ j);
@@ -101,16 +93,12 @@ public class Main {
 							candi2Pos=j;					
 						}	
 					}
-<<<<<<< HEAD
 				}
 //				if(a[i+1].getT1().length==1) {
 //					ult=prim;
 //				}else {
 //					ult=a[i].getT1()[a[i].getT1().length-1];
-//				}			
-=======
-			}			
->>>>>>> branch 'master' of https://github.com/MrAlien98/RUTEO_VIP.git
+//				}				
 			}
 			System.out.println("("+candidato1.getPosX()+","+candidato1.getPosY()+") ("+candidato2.getPosX()+","+candidato2.getPosY()+") : "+ MaxSave+ "   "+ candi1Pos +"," +candi2Pos );
 		}
