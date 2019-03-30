@@ -2,42 +2,6 @@ package tours;
 
 public class Main {
 	
-	class Nodo{
-		
-		int posX;
-		int posY;
-		public Nodo(int posX, int posY) {
-			this.posX=posX;
-			this.posY=posY;
-		}
-		public int getPosX() {
-			return posX;
-		}
-		public void setPosX(int posX) {
-			this.posX = posX;
-		}
-		public int getPosY() {
-			return posY;
-		}
-		public void setPosY(int posY) {
-			this.posY = posY;
-		}
-	}
-	
-	class Tour{
-		
-		Nodo[] t1;
-		public Tour(int size) {
-			t1=new Nodo[size];
-		}
-		public Nodo[] getT1() {
-			return t1;
-		}
-		public void setT1(Nodo[] t1) {
-			this.t1 = t1;
-		}
-	}
-	
 	Nodo[] nodos;
 	Tour[] tours;
 	double[][] save;
@@ -100,46 +64,36 @@ public class Main {
 
 //Primero-ultimo
 	public Tour saveMethod1(Tour[] a) {
-		int x;
-		int y;
 		Double MaxSave=0.0;
 		Nodo prim;
 		Nodo ult;
 		Nodo candidato1=null;;
 		Nodo candidato2=null;;
 		double temp;
-		
-		
 		if(a==null) {
 			System.out.println("Lo siento pero, no has ingresado nada");
 			return null;
-		}
-		else {
+		}else {
 			for(int i=0; i<a.length;i++) {
 				prim=a[i].getT1()[0];
 				
 				if(a[i].getT1().length==1) {
 					ult=prim;
-				}
-				else {
+				}else {
 					ult=a[i].getT1()[a[i].getT1().length-1];
 				}
-				temp=Math.sqrt(Math.pow(2,(ult.getPosX()-prim.posX)+Math.pow(2,(ult.getPosY()-prim.getPosY()))));
-				
+				temp=distances(ult,prim);
 				if(MaxSave< temp) {
 					MaxSave=temp;
 					candidato1=prim;
 					candidato2=ult;
-				}
-			
+				}		
 			}
-			System.out.println(""+ candidato1 + " "+ candidato2+ " "+ MaxSave );
+			System.out.println("("+candidato1.getPosX()+","+candidato1.getPosY()+") ("+candidato2.getPosX()+","+candidato2.getPosY()+") : "+ MaxSave );
 		}
-		
-		return null;
-		
-		
+		return null;		
 	}
+	
 //Primero-primero	
 	public Tour saveMethod2() {
 		return null;
@@ -152,12 +106,6 @@ public class Main {
 	public Tour saveMethod4() {
 		return null;
 	}
-//	public void mayorAh() {
-//		Nodo[] m1=m1();
-//		Nodo[] m2
-//		Nodo[] m3
-//		Nodo[] m4
-//	}
 	
 	public double distances(Nodo n0, Nodo n1) {
 		double dX=n1.getPosX()-n0.getPosX();
@@ -182,7 +130,15 @@ public class Main {
 	}
 	
 	public static void main(String[] args) {
-		
+		Main m=new Main();
+		Tour[] t=new Tour[5];
+		Nodo[] t1=new Nodo[5];
+		for(int i=0;i<t.length;i++) {
+			t1[i]=new Nodo((int) (1+Math.random()*10), (int) (1+Math.random()*10));
+			t[i]=new Tour(5);
+			t[i].setT1(t1);
+		}
+		m.saveMethod1(t);
 	}
 	
 	public void o() {
