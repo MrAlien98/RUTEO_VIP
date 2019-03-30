@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class Main {
+	
 	class Nodo{
+		
 		int posX;
 		int posY;
 		public Nodo(int posX, int posY) {
@@ -24,7 +26,9 @@ public class Main {
 			this.posY = posY;
 		}
 	}
-	class Tour{		
+	
+	class Tour{
+		
 		Nodo[] t1;
 		public Tour(int size) {
 			t1=new Nodo[size];
@@ -97,6 +101,59 @@ public class Main {
 		return null;
 	}
 
+//Primero-ultimo
+	public Tour saveMethod1(Tour[] a) {
+		int x;
+		int y;
+		Double MaxSave=0.0;
+		Nodo prim;
+		Nodo ult;
+		Nodo candidato1;
+		Nodo candidato2;
+		double temp;
+		
+		
+		if(a==null) {
+			System.out.println("Lo siento pero, no has ingresado nada");
+			return null;
+		}
+		else {
+			for(int i=0; i<a.length;i++) {
+				prim=a[i].getT1()[0];
+				
+				if(a[i].getT1().length==1) {
+					ult=prim;
+				}
+				else {
+					ult=a[i].getT1()[a[i].getT1().length-1];
+				}
+				temp=Math.sqrt(Math.pow(2,(ult.getPosX()-prim.posX)+Math.pow(2,(ult.getPosY()-prim.getPosY()))));
+				
+				if(MaxSave< temp) {
+					MaxSave=temp;
+					candidato1=prim;
+					candidato2=ult;
+				}
+			
+			}
+			
+		}
+		
+		return null;
+		
+	}
+//Primero-primero	
+	public Tour saveMethod2() {
+		return null;
+	}
+//ultimo-primero	
+	public Tour saveMethod3() {
+		return null;
+	}
+//ultimo-ultimo	
+	public Tour saveMethod4() {
+		return null;
+	}
 //	public void mayorAh() {
 //		Nodo[] m1=m1();
 //		Nodo[] m2
@@ -130,7 +187,7 @@ public class Main {
 		
 	}
 	
-	public void ño() {
+	public void o() {
 //	
 //		private Node[] cheapestTour;
 //	
