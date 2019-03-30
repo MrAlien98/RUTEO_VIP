@@ -108,8 +108,8 @@ public class Main {
 		Double MaxSave=0.0;
 		Nodo prim;
 		Nodo ult;
-		Nodo candidato1;
-		Nodo candidato2;
+		Nodo candidato1=null;;
+		Nodo candidato2=null;;
 		double temp;
 		
 		
@@ -136,10 +136,11 @@ public class Main {
 				}
 			
 			}
-			
+			System.out.println(""+ candidato1 + " "+ candidato2+ " "+ MaxSave );
 		}
 		
 		return null;
+		
 		
 	}
 //Primero-primero	
