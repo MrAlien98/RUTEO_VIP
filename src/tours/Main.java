@@ -77,7 +77,9 @@ public class Main {
 			return null;
 		}else {
 			for(int i=0; i<a.length;i++) {
+				
 				prim=a[i].getT1()[0];
+<<<<<<< HEAD
 				for(int j=1; j<a.length;j++) {
 					ult=a[i].getT1()[a[j].getT1().length-1];
 					System.out.println(prim.posX+","+prim.posY+"  "+ult.posX+","+ult.posY);
@@ -89,6 +91,24 @@ public class Main {
 						candi1Pos=i;
 						candi2Pos=j;					
 					}	
+=======
+				
+				for(int j=0; j<a.length;j++) {
+					if(i!=j) {
+						System.out.println(""+i +""+ j);
+						ult=a[j].getT1()[a[j].getT1().length-1];
+						System.out.println(prim.posX+","+prim.posY+"  "+ult.posX+","+ult.posY);
+						temp=distances(ult,prim);
+					
+						if(MaxSave > temp) {
+							MaxSave=temp;
+							candidato1=prim;
+							candidato2=ult;
+							candi1Pos=i;
+							candi2Pos=j;					
+						}	
+					}
+>>>>>>> branch 'master' of https://github.com/MrAlien98/RUTEO_VIP.git
 				}
 //				if(a[i+1].getT1().length==1) {
 //					ult=prim;
