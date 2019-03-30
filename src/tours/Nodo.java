@@ -20,4 +20,9 @@ public 	class Nodo{
 	public void setPosY(int posY) {
 		this.posY = posY;
 	}
+	
+	@Override
+	public String toString() {
+		return getPosX()+","+getPosY();
+	}
 }

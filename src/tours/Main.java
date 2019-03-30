@@ -82,9 +82,8 @@ public class Main {
 					if(i!=j) {
 						System.out.println(""+i +""+ j);
 						ult=a[j].getT1()[a[j].getT1().length-1];
-						System.out.println(prim.posX+","+prim.posY+"  "+ult.posX+","+ult.posY);
+						System.out.println(prim.toString()+"  "+ult.toString());
 						temp=distances(ult,prim);
-					
 						if(MaxSave > temp) {
 							MaxSave=temp;
 							candidato1=prim;
@@ -93,12 +92,7 @@ public class Main {
 							candi2Pos=j;					
 						}	
 					}
-				}
-//				if(a[i+1].getT1().length==1) {
-//					ult=prim;
-//				}else {
-//					ult=a[i].getT1()[a[i].getT1().length-1];
-//				}				
+				}				
 			}
 			System.out.println("("+candidato1.getPosX()+","+candidato1.getPosY()+") ("+candidato2.getPosX()+","+candidato2.getPosY()+") : "+ MaxSave+ "   "+ candi1Pos +"," +candi2Pos );
 		}
@@ -142,17 +136,22 @@ public class Main {
 	
 	public static void main(String[] args) {
 		Main m=new Main();
-		Tour[] t=new Tour[5];
-		Nodo[] t1=new Nodo[5];
-		for(int i=0;i<t.length;i++) {
-			int c=4;
-			while(c>=0) {
-				t1[c]=new Nodo((int) (1+Math.random()*10), (int) (1+Math.random()*10));
-				c--;
-			}
-			t[i]=new Tour(5);
-			t[i].setT1(t1);
-		}
+		Tour[] t=new Tour[2];
+		
+		Nodo[] t1=new Nodo[2];
+		t1[0]=new Nodo(5,9);
+		t1[1]=new Nodo(6,3);
+		
+		Nodo[] t2=new Nodo[2];
+		t2[0]=new Nodo(4,7);
+		t2[1]=new Nodo(3,0);
+		
+		t[0]=new Tour(2);
+		t[0].setT1(t1);
+		
+		t[1]=new Tour(2);
+		t[1].setT1(t2);
+		
 		m.saveMethod1(t);
 	}
 	
