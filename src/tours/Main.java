@@ -1,8 +1,5 @@
 package tours;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
 public class Main {
 	
 	class Nodo{
@@ -45,10 +42,10 @@ public class Main {
 	Tour[] tours;
 	double[][] save;
 	
-	public Main(int size) {
-		save=new double[size][size];
-		nodos=new Nodo[size];
-		tours=new Tour[size];
+	public Main() {
+		save=new double[5][5];
+		nodos=new Nodo[5];
+		tours=new Tour[5];
 		for(int i=0;i<tours.length;i++) {
 			tours[i]=new Tour(tours.length);
 		}
