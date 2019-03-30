@@ -79,7 +79,7 @@ public class Main {
 			for(int i=0; i<a.length;i++) {
 				prim=a[i].getT1()[0];
 				for(int j=1; j<a.length;j++) {
-					ult=a[j].getT1()[a[j].getT1().length-1];
+					ult=a[i].getT1()[a[j].getT1().length-1];
 					System.out.println(prim.posX+","+prim.posY+"  "+ult.posX+","+ult.posY);
 					temp=distances(ult,prim);
 					if(MaxSave > temp) {
@@ -141,7 +141,11 @@ public class Main {
 		Tour[] t=new Tour[5];
 		Nodo[] t1=new Nodo[5];
 		for(int i=0;i<t.length;i++) {
-			t1[i]=new Nodo((int) (1+Math.random()*10), (int) (1+Math.random()*10));
+			int c=4;
+			while(c>=0) {
+				t1[c]=new Nodo((int) (1+Math.random()*10), (int) (1+Math.random()*10));
+				c--;
+			}
 			t[i]=new Tour(5);
 			t[i].setT1(t1);
 		}
