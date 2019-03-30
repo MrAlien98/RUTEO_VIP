@@ -69,6 +69,8 @@ public class Main {
 		Nodo ult;
 		Nodo candidato1=null;;
 		Nodo candidato2=null;;
+		int candi1Pos=0;
+		int candi2Pos=0;
 		double temp;
 		if(a==null) {
 			System.out.println("Lo siento pero, no has ingresado nada");
@@ -87,6 +89,9 @@ public class Main {
 						MaxSave=temp;
 						candidato1=prim;
 						candidato2=ult;
+						candi1Pos=i;
+						candi2Pos=j;
+						
 					}	
 				}
 //				if(a[i+1].getT1().length==1) {
@@ -96,7 +101,7 @@ public class Main {
 //				}
 					
 			}
-			System.out.println("("+candidato1.getPosX()+","+candidato1.getPosY()+") ("+candidato2.getPosX()+","+candidato2.getPosY()+") : "+ MaxSave );
+			System.out.println("("+candidato1.getPosX()+","+candidato1.getPosY()+") ("+candidato2.getPosX()+","+candidato2.getPosY()+") : "+ MaxSave+ "   "+ candi1Pos +"," +candi2Pos );
 		}
 		return null;		
 	}
