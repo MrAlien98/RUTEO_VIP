@@ -1,10 +1,16 @@
 package tours;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 public class Main {
 	class Nodo{
 		int posX;
 		int posY;
-		public Nodo() {}
+		public Nodo(int posX, int posY) {
+			this.posX=posX;
+			this.posY=posY;
+		}
 		public int getPosX() {
 			return posX;
 		}
@@ -51,14 +57,32 @@ public class Main {
 		}
 	}
 	
-	public Nodo[] m1(Nodo[] tours) {
-		int[][] ahorros=new int[tours.length][tours.length];
-		for(int i=0;i<ahorros.length;i++) {
-			for(int j=0;j<ahorros[i].length;j++) {
-				
+	public Tour[] m1(Tour[] tours1) {
+		double[][] saves=new double[tours1.length][tours1.length];
+		for(int i=0;i<saves.length;i++) {
+			for(int j=0;i<saves[i].length;j++) {
+				saves[i][j]=distances(tours1[i].getT1()[0], tours1[j].getT1()[tours1[j].getT1().length-1]);
 			}
 		}
-		return null;
+		double max=0;
+		int px=0;
+		int py=0;
+		for(int i=0;i<saves.length;i++) {
+			for(int j=0;i<saves[i].length;j++) {
+				if(saves[i][j]>max){
+					max=saves[i][j];
+					px=i;
+					py=j;
+				}
+			}
+		}
+		Tour[] t=new Tour[tours1[px].getT1().length + tours1[py].getT1().length];
+		for(int i=0;i<tours.length;i++) {
+			if(i==px || i==py) {
+				t[i]=tours[i];
+			}
+		}
+		return t;
 	}
 
 	public Nodo[] m2(Nodo[] tours) {
