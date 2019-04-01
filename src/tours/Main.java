@@ -159,7 +159,7 @@ public class Main {
 						
 						prim=a[j].getT1()[a[j].getT1().length-1];
 						System.out.println(prim.toString()+"  "+ult.toString());
-						temp=distances(ult,prim);
+						temp=distances(prim,ult);
 						if(MaxSave > temp) {
 							MaxSave=temp;
 							candidato1=prim;
@@ -195,7 +195,7 @@ public class Main {
 						System.out.println(""+i +""+ j);
 						ult2=a[j].getT1()[a[j].getT1().length-1];
 						System.out.println(ult.toString()+"  "+ult2.toString());
-						temp=distances(ult,ult2);
+						temp=distances(ult2,ult);
 						if(MaxSave > temp) {
 							MaxSave=temp;
 							candidato1=ult;
