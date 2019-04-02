@@ -22,33 +22,33 @@ public class Main {
 		}
 	}
 	
-	public Tour[] m1(Tour[] tours1) {
-		double[][] saves=new double[tours1.length][tours1.length];
-		for(int i=0;i<saves.length;i++) {
-			for(int j=0;i<saves[i].length;j++) {
-				saves[i][j]=distances(tours1[i].getT1()[0], tours1[j].getT1()[tours1[j].getT1().length-1]);
-			}
-		}
-		double max=0;
-		int px=0;
-		int py=0;
-		for(int i=0;i<saves.length;i++) {
-			for(int j=0;i<saves[i].length;j++) {
-				if(saves[i][j]>max){
-					max=saves[i][j];
-					px=i;
-					py=j;
-				}
-			}
-		}
-		Tour[] t=new Tour[tours1[px].getT1().length + tours1[py].getT1().length];
-		for(int i=0;i<tours.length;i++) {
-			if(i==px || i==py) {
-				t[i]=tours[i];
-			}
-		}
-		return t;
-	}
+//	public Tour[] m1(Tour[] tours1) {
+//		double[][] saves=new double[tours1.length][tours1.length];
+//		for(int i=0;i<saves.length;i++) {
+//			for(int j=0;i<saves[i].length;j++) {
+//				saves[i][j]=distances(tours1[i].getT1()[0], tours1[j].getT1()[tours1[j].getT1().length-1]);
+//			}
+//		}
+//		double max=0;
+//		int px=0;
+//		int py=0;
+//		for(int i=0;i<saves.length;i++) {
+//			for(int j=0;i<saves[i].length;j++) {
+//				if(saves[i][j]>max){
+//					max=saves[i][j];
+//					px=i;
+//					py=j;
+//				}
+//			}
+//		}
+//		Tour[] t=new Tour[tours1[px].getT1().length + tours1[py].getT1().length];
+//		for(int i=0;i<tours.length;i++) {
+//			if(i==px || i==py) {
+//				t[i]=tours[i];
+//			}
+//		}
+//		return t;
+//	}
 
 	public Nodo[] m2(Nodo[] tours) {
 		return null;
@@ -72,6 +72,7 @@ public class Main {
 		int candi1Pos=0;
 		int candi2Pos=0;
 		double temp;
+		String v="";
 		if(a==null) {
 			System.out.println("Lo siento pero, no has ingresado nada");
 			return null;
@@ -84,6 +85,7 @@ public class Main {
 						ult=a[j].getT1()[a[j].getT1().length-1];
 						System.out.println(prim.toString()+"  "+ult.toString());
 						temp=distances(ult,prim);
+						v+=temp+" ";
 						if(MaxSave > temp) {
 							MaxSave=temp;
 							candidato1=prim;
@@ -94,7 +96,8 @@ public class Main {
 					}
 				}				
 			}
-			System.out.println("("+candidato1.getPosX()+","+candidato1.getPosY()+") ("+candidato2.getPosX()+","+candidato2.getPosY()+") : "+ MaxSave+ "   "+ candi1Pos +"," +candi2Pos );
+			System.out.println(v);
+			System.out.println("("+candidato1.toString()+") ("+candidato2.toString()+") : "+ MaxSave+ "   "+ candi1Pos +"," +candi2Pos );
 		}
 		return null;		
 	}
