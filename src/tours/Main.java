@@ -67,7 +67,26 @@ public class Main {
 	 * @param y indice del segundo tour
 	 */
 	public void joinToursFF(int x, int y) {
-		
+		Tour[] ts=new Tour[tours.length-1];
+		Nodo[] ns=new Nodo[tours[x].getT1().length+tours[y].getT1().length];
+		for(int i=0;i<tours[x].getT1().length;i++) {
+			ns[i]=tours[x].getT1()[i];
+		}
+		int c=0;
+		for(int i=tours[x].getT1().length;i<ns.length;i++) {
+			ns[i]=tours[y].getT1()[c];
+			c++;
+		}
+		for(int i=0;i<tours.length;i++) {
+			if(i==x) {
+				Tour n=new Tour(ns.length);
+				n.setT1(ns);
+				ts[i]=n;
+			}else {
+				
+			}
+			ts[i]=tours[i];
+		}
 	}
 	
 	/**
