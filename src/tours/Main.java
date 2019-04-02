@@ -22,48 +22,190 @@ public class Main {
 		}
 	}
 	
-//	public Tour[] m1(Tour[] tours1) {
-//		double[][] saves=new double[tours1.length][tours1.length];
-//		for(int i=0;i<saves.length;i++) {
-//			for(int j=0;i<saves[i].length;j++) {
-//				saves[i][j]=distances(tours1[i].getT1()[0], tours1[j].getT1()[tours1[j].getT1().length-1]);
-//			}
-//		}
-//		double max=0;
-//		int px=0;
-//		int py=0;
-//		for(int i=0;i<saves.length;i++) {
-//			for(int j=0;i<saves[i].length;j++) {
-//				if(saves[i][j]>max){
-//					max=saves[i][j];
-//					px=i;
-//					py=j;
-//				}
-//			}
-//		}
-//		Tour[] t=new Tour[tours1[px].getT1().length + tours1[py].getT1().length];
-//		for(int i=0;i<tours.length;i++) {
-//			if(i==px || i==py) {
-//				t[i]=tours[i];
-//			}
-//		}
-//		return t;
-//	}
-
-	public Nodo[] m2(Nodo[] tours) {
-		return null;
+	public void joinToursOnce() {
+		Tour[] newTours=new Tour[tours.length-1];
+		for(int i=0;i<newTours.length;i++) {
+			Nodo[] a= {tours[i].getT1()[0], tours[i].getT1()[i]};
+			newTours[i].setT1(a);
+		}
+		setTours(newTours);
+	}
+	
+	public void joinTours(String data) {
+		String s1=saveMethod1(tours);
+		String s2=saveMethod2(tours);
+		String s3=saveMethod3(tours);
+		String s4=saveMethod4(tours);
+		
+		String[] s1a=s1.split("/");
+		String[] s2a=s2.split("/");
+		String[] s3a=s3.split("/");
+		String[] s4a=s4.split("/");
+		
+		int save1=Integer.parseInt(s1a[0]);
+		int save2=Integer.parseInt(s2a[0]);
+		int save3=Integer.parseInt(s3a[0]);
+		int save4=Integer.parseInt(s4a[0]);
+		
+		int max=greaterSave(save1, save2, save3, save4);
+		
+		if(max==save1) {
+			joinToursFF(Integer.parseInt(s1a[1]), Integer.parseInt(s1a[2]));
+		}else if(max==save2){
+			joinToursFL(Integer.parseInt(s2a[1]), Integer.parseInt(s2a[2]));
+		}else if(max==save3) {
+			joinToursLL(Integer.parseInt(s3a[1]), Integer.parseInt(s3a[2]));
+		}else {
+			joinToursLF(Integer.parseInt(s4a[1]), Integer.parseInt(s4a[2]));
+		}
+	}
+	
+	/**
+	 * Primero - Primero
+	 * First First
+	 * @param x indice del primer tour
+	 * @param y indice del segundo tour
+	 */
+	public void joinToursFF(int x, int y) {
+		
+	}
+	
+	/**
+	 * Primero - Ultimo
+	 * First Last
+	 * @param x indice del primer tour
+	 * @param y indice del segundo tour
+	 */
+	public void joinToursFL(int x, int y) {
+		
 	}
 
-	public Nodo[] m3(Nodo[] tours) {
-		return null;
+	/**
+	 * Ultimo - Ultimo
+	 * Last Last
+	 * @param x indice del primer tour
+	 * @param y indice del segundo tour
+	 */
+	public void joinToursLL(int x, int y) {
+	
 	}
 
-	public Nodo[] m4(Nodo[] tours) {
-		return null;
+	/**
+	 * Ultimo - Primero
+	 * Last First
+	 * @param x indice del primer tour
+	 * @param y indice del segundo tour
+	 */
+	public void joinToursLF(int x, int y) {
+	
 	}
-
-//Primero-ultimo
-	public String saveMethod1(Tour[] a) {
+	
+	public int greaterSave(int a, int b, int c, int d) {
+		int[] saves= {a, b, c, d};
+		int mayor=0;
+		for(int i=0;i<saves.length;i++) {
+			if(saves[i]>mayor) {
+				mayor=saves[i];
+			}
+		}
+		return mayor;
+	}
+	
+	//Primero-ultimo
+	
+	/**
+	 * Primero - Primero
+	 * First First
+	 * @param a arreglo de tours a analizar
+	 * @return un string con la informacion de los tours a unir
+	 */
+	public String saveMethod1(Tour[]a) {
+		Double MaxSave=Double.MAX_VALUE;
+		Nodo prim;
+		Nodo prim2;
+		Nodo candidato1=null;;
+		Nodo candidato2=null;;
+		int candi1Pos=0;
+		int candi2Pos=0;
+		double temp;
+		if(a==null) {
+			//System.out.println("Lo siento pero, no has ingresado nada");
+			return "Lo siento pero, no has ingresado nada";
+		}else {
+			for(int i=0; i<a.length;i++) {	
+				prim=a[i].getT1()[0];
+				for(int j=0; j<a.length;j++) {
+					if(i!=j) {
+						System.out.println(""+i +""+ j);
+						prim2=a[j].getT1()[0];
+						System.out.println(prim.toString()+"  "+prim2.toString());
+						temp=distances(prim2,prim);
+						if(MaxSave > temp) {
+							MaxSave=temp;
+							candidato1=prim;
+							candidato2=prim2;
+							candi1Pos=i;
+							candi2Pos=j;					
+						}	
+					}
+				}				
+			}
+			System.out.println("("+candidato1.toString()+") ("+candidato2.toString()+") : "+MaxSave+ " _ "+ candi1Pos +"," +candi2Pos );
+		}
+		return ""+MaxSave+"/"+candi1Pos+"/"+candi2Pos;
+	}
+	
+	/**
+	 * Primero - Ultimo
+	 * First - Last
+	 * @param a arreglo de tours a analizar
+	 * @return un string con la informacion de los tours a unir
+	 */
+	public String saveMethod2(Tour []a) {
+		Double MaxSave=Double.MAX_VALUE;
+		Nodo prim;
+		Nodo ult;
+		Nodo candidato1=null;;
+		Nodo candidato2=null;;
+		int candi1Pos=0;
+		int candi2Pos=0;
+		double temp;
+		if(a==null) {
+			//System.out.println("Lo siento pero, no has ingresado nada");
+			return "Lo siento pero, no has ingresado nada";
+		}else {
+			for(int i=0; i<a.length;i++) {	
+				
+				ult=a[i].getT1()[0];
+				for(int j=0; j<a.length;j++) {
+					if(i!=j) {
+						System.out.println(""+i +""+ j);
+						
+						prim=a[j].getT1()[a[j].getT1().length-1];
+						System.out.println(prim.toString()+"  "+ult.toString());
+						temp=distances(prim,ult);
+						if(MaxSave > temp) {
+							MaxSave=temp;
+							candidato1=prim;
+							candidato2=ult;
+							candi1Pos=i;
+							candi2Pos=j;					
+						}	
+					}
+				}				
+			}
+			System.out.println("("+candidato1.toString()+") ("+candidato2.toString()+") : "+MaxSave+ " _ "+ candi1Pos +"," +candi2Pos );
+		}
+		return ""+MaxSave+"/"+candi1Pos+"/"+candi2Pos;
+	}
+	
+	/**
+	 * Ultimo Primero
+	 * Last First
+	 * @param a arreglo de tours a analizar
+	 * @return un string con la informacion de los tours a unir
+	 */
+	public String saveMethod3(Tour[] a) {
 		Double MaxSave=Double.MAX_VALUE;
 		Nodo prim;
 		Nodo ult;
@@ -102,83 +244,18 @@ public class Main {
 		return ""+MaxSave+"/"+candi1Pos+"/"+candi2Pos;				
 	}
 	
-//Primero-primero	
-	public String saveMethod2(Tour[]a) {
-		Double MaxSave=Double.MAX_VALUE;
-		Nodo prim;
-		Nodo prim2;
-		Nodo candidato1=null;;
-		Nodo candidato2=null;;
-		int candi1Pos=0;
-		int candi2Pos=0;
-		double temp;
-		if(a==null) {
-			//System.out.println("Lo siento pero, no has ingresado nada");
-			return "Lo siento pero, no has ingresado nada";
-		}else {
-			for(int i=0; i<a.length;i++) {	
-				prim=a[i].getT1()[0];
-				for(int j=0; j<a.length;j++) {
-					if(i!=j) {
-						System.out.println(""+i +""+ j);
-						prim2=a[j].getT1()[0];
-						System.out.println(prim.toString()+"  "+prim2.toString());
-						temp=distances(prim2,prim);
-						if(MaxSave > temp) {
-							MaxSave=temp;
-							candidato1=prim;
-							candidato2=prim2;
-							candi1Pos=i;
-							candi2Pos=j;					
-						}	
-					}
-				}				
-			}
-			System.out.println("("+candidato1.toString()+") ("+candidato2.toString()+") : "+MaxSave+ " _ "+ candi1Pos +"," +candi2Pos );
-		}
-		return ""+MaxSave+"/"+candi1Pos+"/"+candi2Pos;
-	}
+	//Primero-primero	
 	
-//ultimo-primero	
-	public String saveMethod3(Tour []a) {
-		Double MaxSave=Double.MAX_VALUE;
-		Nodo prim;
-		Nodo ult;
-		Nodo candidato1=null;;
-		Nodo candidato2=null;;
-		int candi1Pos=0;
-		int candi2Pos=0;
-		double temp;
-		if(a==null) {
-			//System.out.println("Lo siento pero, no has ingresado nada");
-			return "Lo siento pero, no has ingresado nada";
-		}else {
-			for(int i=0; i<a.length;i++) {	
-				
-				ult=a[i].getT1()[0];
-				for(int j=0; j<a.length;j++) {
-					if(i!=j) {
-						System.out.println(""+i +""+ j);
-						
-						prim=a[j].getT1()[a[j].getT1().length-1];
-						System.out.println(prim.toString()+"  "+ult.toString());
-						temp=distances(prim,ult);
-						if(MaxSave > temp) {
-							MaxSave=temp;
-							candidato1=prim;
-							candidato2=ult;
-							candi1Pos=i;
-							candi2Pos=j;					
-						}	
-					}
-				}				
-			}
-			System.out.println("("+candidato1.toString()+") ("+candidato2.toString()+") : "+MaxSave+ " _ "+ candi1Pos +"," +candi2Pos );
-		}
-		return ""+MaxSave+"/"+candi1Pos+"/"+candi2Pos;
-	}
+	//Ultimo-primero	
 	
-//ultimo-ultimo	
+	//Ultimo-ultimo	
+	
+	/**
+	 * Ultimo - Ultimo
+	 * Last - Last
+	 * @param a arreglo de tours a analizar
+	 * @return un string con la informacion de los tours a unir
+	 */
 	public String saveMethod4(Tour a[]) {
 		Double MaxSave=Double.MAX_VALUE;
 		Nodo ult2;
@@ -189,7 +266,6 @@ public class Main {
 		int candi2Pos=0;
 		double temp;
 		if(a==null) {
-			//System.out.println("Lo siento pero, no has ingresado nada");
 			return "Lo siento pero, no has ingresado nada";
 		}else {
 			for(int i=0; i<a.length;i++) {	
@@ -214,6 +290,7 @@ public class Main {
 		}
 		return ""+MaxSave+"/"+candi1Pos+"/"+candi2Pos;
 	}
+	
 	
 	public double distances(Nodo n0, Nodo n1) {
 		double dX=n1.getPosX()-n0.getPosX();
