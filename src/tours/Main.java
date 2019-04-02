@@ -69,8 +69,9 @@ public class Main {
 	public void joinToursFF(int x, int y) {
 		Tour[] ts=new Tour[tours.length-1];
 		Nodo[] ns=new Nodo[tours[x].getT1().length+tours[y].getT1().length];
-		for(int i=0;i<tours[x].getT1().length;i++) {
-			ns[i]=tours[x].getT1()[i];
+		Nodo[] a=tours[x].getT1();
+		for(int i=a.length;i<=0;i--) {
+			ns[i]=a[i-1];
 		}
 		int c=0;
 		for(int i=tours[x].getT1().length;i<ns.length;i++) {
@@ -78,14 +79,18 @@ public class Main {
 			c++;
 		}
 		for(int i=0;i<tours.length;i++) {
-			if(i==x) {
-				Tour n=new Tour(ns.length);
-				n.setT1(ns);
-				ts[i]=n;
+			if(x==tours.length-1) {
+				ts[i].setT1(ns);
+				ts[i+1]=tours[i];
 			}else {
-				
+				if(i==x) {
+					Tour n=new Tour(ns.length);
+					n.setT1(ns);
+					ts[i]=n;
+				}else {
+					ts[i]=tours[i];
+				}
 			}
-			ts[i]=tours[i];
 		}
 	}
 	
@@ -96,7 +101,32 @@ public class Main {
 	 * @param y indice del segundo tour
 	 */
 	public void joinToursFL(int x, int y) {
-		
+		Tour[] ts=new Tour[tours.length-1];
+		Nodo[] ns=new Nodo[tours[x].getT1().length+tours[y].getT1().length];
+		Nodo[] a=tours[x].getT1();
+		Nodo[] b=tours[y].getT1();
+		for(int i=a.length;i<=0;i--) {
+			ns[i]=a[i-1];
+		}
+		int c=0;
+		for(int i=tours[x].getT1().length;i<ns.length;i++) {
+			ns[i]=b[c];
+			c++;
+		}
+		for(int i=0;i<tours.length;i++) {
+			if(x==tours.length-1) {
+				ts[i].setT1(ns);
+				ts[i+1]=tours[i];
+			}else {
+				if(i==x) {
+					Tour n=new Tour(ns.length);
+					n.setT1(ns);
+					ts[i]=n;
+				}else {
+					ts[i]=tours[i];
+				}
+			}
+		}
 	}
 
 	/**
@@ -106,7 +136,32 @@ public class Main {
 	 * @param y indice del segundo tour
 	 */
 	public void joinToursLL(int x, int y) {
-	
+		Tour[] ts=new Tour[tours.length-1];
+		Nodo[] ns=new Nodo[tours[x].getT1().length+tours[y].getT1().length];
+		Nodo[] a=tours[x].getT1();
+		Nodo[] b=tours[y].getT1();
+		for(int i=0;i<a.length;i++) {
+			ns[i]=a[i];
+		}
+		int c=0;
+		for(int i=tours[x].getT1().length;i<ns.length;i++) {
+			ns[i]=b[c];
+			c++;
+		}
+		for(int i=0;i<tours.length;i++) {
+			if(x==tours.length-1) {
+				ts[i].setT1(ns);
+				ts[i+1]=tours[i];
+			}else {
+				if(i==x) {
+					Tour n=new Tour(ns.length);
+					n.setT1(ns);
+					ts[i]=n;
+				}else {
+					ts[i]=tours[i];
+				}
+			}
+		}
 	}
 
 	/**
@@ -116,7 +171,32 @@ public class Main {
 	 * @param y indice del segundo tour
 	 */
 	public void joinToursLF(int x, int y) {
-	
+		Tour[] ts=new Tour[tours.length-1];
+		Nodo[] ns=new Nodo[tours[x].getT1().length+tours[y].getT1().length];
+		Nodo[] a=tours[x].getT1();
+		Nodo[] b=tours[y].getT1();
+		for(int i=0;i<a.length;i++) {
+			ns[i]=a[i];
+		}
+		int c=0;
+		for(int i=tours[x].getT1().length;i<ns.length;i++) {
+			ns[i]=b[c];
+			c++;
+		}
+		for(int i=0;i<tours.length;i++) {
+			if(x==tours.length-1) {
+				ts[i].setT1(ns);
+				ts[i+1]=tours[i];
+			}else {
+				if(i==x) {
+					Tour n=new Tour(ns.length);
+					n.setT1(ns);
+					ts[i]=n;
+				}else {
+					ts[i]=tours[i];
+				}
+			}
+		}
 	}
 	
 	public int greaterSave(int a, int b, int c, int d) {
