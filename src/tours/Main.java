@@ -15,13 +15,6 @@ public class Main {
 		}
 	}
 	
-	public void initialize() {
-		for(int i=0;i<tours.length;i++) {
-			nodos[i].setPosX(1+(int)Math.random()*9);
-			nodos[i].setPosY(1+(int)Math.random()*9);
-		}
-	}
-	
 	public void joinToursOnce() {
 		Tour[] newTours=new Tour[tours.length-1];
 		for(int i=0;i<newTours.length;i++) {
@@ -417,13 +410,15 @@ public class Main {
 		Main m=new Main();
 		Tour[] t=new Tour[2];
 		
-		Nodo[] t1=new Nodo[2];
+		Nodo[] t1=new Nodo[3];
 		t1[0]=new Nodo(5,9);
 		t1[1]=new Nodo(6,3);
+		t1[2]=new Nodo(5,10);
 		
-		Nodo[] t2=new Nodo[2];
+		Nodo[] t2=new Nodo[3];
 		t2[0]=new Nodo(4,7);
 		t2[1]=new Nodo(3,0);
+		t2[2]=new Nodo(9,2);
 		
 		t[0]=new Tour(2);
 		t[0].setT1(t1);
