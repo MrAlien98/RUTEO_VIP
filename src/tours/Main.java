@@ -6,10 +6,10 @@ public class Main {
 	Tour[] tours;
 	double[][] save;
 	
-	public Main() {
-		save=new double[5][5];
-		nodos=new Nodo[5];
-		tours=new Tour[5];
+	public Main(int s) {
+		save=new double[s][s];
+		nodos=new Nodo[s];
+		tours=new Tour[s];
 		for(int i=0;i<tours.length;i++) {
 			tours[i]=new Tour(tours.length);
 		}
@@ -18,10 +18,21 @@ public class Main {
 	public void joinToursOnce() {
 		Tour[] newTours=new Tour[tours.length-1];
 		for(int i=0;i<newTours.length;i++) {
-			Nodo[] a= {tours[i].getT1()[0], tours[i].getT1()[i]};
+			newTours[i]=new Tour(i);
+		}
+		for(int i=0;i<newTours.length;i++) {
+			Nodo[] a= {nodos[0], nodos[i]};
 			newTours[i].setT1(a);
 		}
 		setTours(newTours);
+		String ajam="";
+		for(int j=0;j<tours.length;j++) {
+			for(int i=0;i<tours[j].getT1().length;i++) {
+				ajam+=tours[j].getT1()[i]+" ";
+			}
+			ajam+="\n";
+		}
+		System.out.println(ajam);
 	}
 	
 	public void joinTours(String data) {
@@ -203,8 +214,6 @@ public class Main {
 		return mayor;
 	}
 	
-	//Primero-ultimo
-	
 	/**
 	 * Primero - Primero
 	 * First First
@@ -335,13 +344,7 @@ public class Main {
 		}
 		return ""+MaxSave+"/"+candi1Pos+"/"+candi2Pos;				
 	}
-	
-	//Primero-primero	
-	
-	//Ultimo-primero	
-	
-	//Ultimo-ultimo	
-	
+
 	/**
 	 * Ultimo - Ultimo
 	 * Last - Last
@@ -396,6 +399,7 @@ public class Main {
 	
 	public void setNodos(Nodo[] nodos) {
 		this.nodos = nodos;
+		joinToursOnce();
 	}
 	
 	public Tour[] getTours() {
@@ -407,27 +411,31 @@ public class Main {
 	}
 	
 	public static void main(String[] args) {
-		Main m=new Main();
-		Tour[] t=new Tour[2];
+		Main m=new Main(5);
+		Nodo[] nodos= {new Nodo(1,5),new Nodo(4,6),new Nodo(3,9),new Nodo(0,7),new Nodo(4,4),new Nodo(10,2),new Nodo(11,3),new Nodo(12,6),new Nodo(1,9)};
+		m.setNodos(nodos);
+//		Tour[] t=new Tour[2];
+//		
+//		Nodo[] t1=new Nodo[3];
+//		t1[0]=new Nodo(5,9);
+//		t1[1]=new Nodo(6,3);
+//		t1[2]=new Nodo(5,10);
+//		
+//		Nodo[] t2=new Nodo[3];
+//		t2[0]=new Nodo(4,7);
+//		t2[1]=new Nodo(3,0);
+//		t2[2]=new Nodo(9,2);
+//		
+//		t[0]=new Tour(2);
+//		t[0].setT1(t1);
+//		
+//		t[1]=new Tour(2);
+//		t[1].setT1(t2);
+//		
+//		m.setTours(t);
 		
-		Nodo[] t1=new Nodo[3];
-		t1[0]=new Nodo(5,9);
-		t1[1]=new Nodo(6,3);
-		t1[2]=new Nodo(5,10);
-		
-		Nodo[] t2=new Nodo[3];
-		t2[0]=new Nodo(4,7);
-		t2[1]=new Nodo(3,0);
-		t2[2]=new Nodo(9,2);
-		
-		t[0]=new Tour(2);
-		t[0].setT1(t1);
-		
-		t[1]=new Tour(2);
-		t[1].setT1(t2);
-		
-		String mensaje=m.saveMethod1(t);
-		System.out.println(mensaje);
+//		String mensaje=m.saveMethod1(t);
+//		System.out.println(mensaje);
 	}
 	
 }
