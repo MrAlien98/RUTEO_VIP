@@ -64,13 +64,16 @@ public class Main {
 			joinToursLF(Integer.parseInt(s4a[1]), Integer.parseInt(s4a[2]));
 		}
 		String aja="";
-		for(int i=0;i<tours.length;i++) {
-			for(int j=0;j<tours[i].getT1().length;j++) {
+		for(int i=0;i<getTours().length;i++) {
+			for(int j=0;j<getTours()[i].getT1().length;j++) {
 				aja+=tours[i].getT1()[j].toString()+" ";
 			}
 			aja+="\n";
 		}
 		System.out.println(aja);
+		while(tours.length>1) {
+			joinTours();
+		}
 	}
 	
 	/**
@@ -108,6 +111,7 @@ public class Main {
 				}
 			}
 		}
+		setTours(ts);
 	}
 	
 	/**
@@ -132,17 +136,21 @@ public class Main {
 		for(int i=0;i<tours.length;i++) {
 			if(x==tours.length-1) {
 				ts[i].setT1(ns);
-				ts[i+1]=tours[i];
+				ts[i+1]=tours[i];	
+				x--;
 			}else {
 				if(i==x) {
 					Tour n=new Tour(ns.length);
 					n.setT1(ns);
 					ts[i]=n;
+				}else if(i==y) {
+					ts[i]=tours[i+1];
 				}else {
 					ts[i]=tours[i];
 				}
 			}
 		}
+		setTours(ts);
 	}
 
 	/**
@@ -167,17 +175,21 @@ public class Main {
 		for(int i=0;i<tours.length;i++) {
 			if(x==tours.length-1) {
 				ts[i].setT1(ns);
-				ts[i+1]=tours[i];
+				ts[i+1]=tours[i];	
+				x--;
 			}else {
 				if(i==x) {
 					Tour n=new Tour(ns.length);
 					n.setT1(ns);
 					ts[i]=n;
+				}else if(i==y) {
+					ts[i]=tours[i+1];
 				}else {
 					ts[i]=tours[i];
 				}
 			}
 		}
+		setTours(ts);
 	}
 
 	/**
@@ -195,24 +207,27 @@ public class Main {
 			ns[i]=a[i];
 		}
 		int c=0;
-		for(int i=tours[x].getT1().length;i<ns.length;i++) {
+		for(int i=a.length;i<ns.length;i++) {
 			ns[i]=b[c];
 			c++;
 		}
 		for(int i=0;i<tours.length;i++) {
 			if(x==tours.length-1) {
 				ts[i].setT1(ns);
-				ts[i+1]=tours[i];
+				ts[i+1]=tours[i];	x--;
 			}else {
 				if(i==x) {
 					Tour n=new Tour(ns.length);
 					n.setT1(ns);
 					ts[i]=n;
+				}else if(i==y) {
+					ts[i]=tours[i+1];
 				}else {
 					ts[i]=tours[i];
 				}
 			}
 		}
+		setTours(ts);
 	}
 	
 	public double greaterSave(double a, double b, double c, double d) {
@@ -236,34 +251,26 @@ public class Main {
 		Double MaxSave=Double.MAX_VALUE;
 		Nodo prim;
 		Nodo prim2;
-		Nodo candidato1=null;;
-		Nodo candidato2=null;;
 		int candi1Pos=0;
 		int candi2Pos=0;
 		double temp;
 		if(a==null) {
-			//System.out.println("Lo siento pero, no has ingresado nada");
 			return "Lo siento pero, no has ingresado nada";
 		}else {
 			for(int i=0; i<a.length;i++) {	
 				prim=a[i].getT1()[0];
 				for(int j=0; j<a.length;j++) {
 					if(i!=j) {
-//						System.out.println(""+i +""+ j);
 						prim2=a[j].getT1()[0];
-//						System.out.println(prim.toString()+"  "+prim2.toString());
 						temp=distances(prim2,prim);
 						if(MaxSave > temp) {
 							MaxSave=temp;
-							candidato1=prim;
-							candidato2=prim2;
 							candi1Pos=i;
 							candi2Pos=j;					
 						}	
 					}
 				}				
 			}
-//			System.out.println("("+candidato1.toString()+") ("+candidato2.toString()+") : "+MaxSave+ " _ "+ candi1Pos +"," +candi2Pos );
 		}
 		return ""+MaxSave+"/"+candi1Pos+"/"+candi2Pos;
 	}
@@ -278,8 +285,6 @@ public class Main {
 		Double MaxSave=Double.MAX_VALUE;
 		Nodo prim;
 		Nodo ult;
-		Nodo candidato1=null;;
-		Nodo candidato2=null;;
 		int candi1Pos=0;
 		int candi2Pos=0;
 		double temp;
@@ -288,25 +293,19 @@ public class Main {
 			return "Lo siento pero, no has ingresado nada";
 		}else {
 			for(int i=0; i<a.length;i++) {	
-				
 				ult=a[i].getT1()[0];
 				for(int j=0; j<a.length;j++) {
-					if(i!=j) {
-//						System.out.println(""+i +""+ j);					
+					if(i!=j) {					
 						prim=a[j].getT1()[a[j].getT1().length-1];
-//						System.out.println(prim.toString()+"  "+ult.toString());
 						temp=distances(prim,ult);
 						if(MaxSave > temp) {
 							MaxSave=temp;
-							candidato1=prim;
-							candidato2=ult;
 							candi1Pos=i;
 							candi2Pos=j;					
 						}	
 					}
 				}				
 			}
-//			System.out.println("("+candidato1.toString()+") ("+candidato2.toString()+") : "+MaxSave+ " _ "+ candi1Pos +"," +candi2Pos );
 		}
 		return ""+MaxSave+"/"+candi1Pos+"/"+candi2Pos;
 	}
@@ -321,37 +320,26 @@ public class Main {
 		Double MaxSave=Double.MAX_VALUE;
 		Nodo prim;
 		Nodo ult;
-		Nodo candidato1=null;;
-		Nodo candidato2=null;;
 		int candi1Pos=0;
 		int candi2Pos=0;
 		double temp;
-//		String v="";
 		if(a==null) {
-			//System.out.println("Lo siento pero, no has ingresado nada");
 			return "Lo siento pero, no has ingresado nada";
 		}else {
 			for(int i=0; i<a.length;i++) {	
 				prim=a[i].getT1()[0];
 				for(int j=0; j<a.length;j++) {
 					if(i!=j) {
-//						System.out.println(""+i +""+ j);
 						ult=a[j].getT1()[a[j].getT1().length-1];
-//						System.out.println(prim.toString()+"  "+ult.toString());
 						temp=distances(ult,prim);
-//						v+=temp+" ";
 						if(MaxSave > temp) {
 							MaxSave=temp;
-							candidato1=prim;
-							candidato2=ult;
 							candi1Pos=i;
 							candi2Pos=j;					
 						}	
 					}
 				}				
 			}
-//			System.out.println(v);
-//			System.out.println("("+candidato1.toString()+") ("+candidato2.toString()+") : "+ MaxSave+ "   "+ candi1Pos +"," +candi2Pos );
 		}
 		return ""+MaxSave+"/"+candi1Pos+"/"+candi2Pos;				
 	}
@@ -376,15 +364,7 @@ public class Main {
 				ult=a[i].getT1()[a[i].getT1().length-1];
 				for(int j=0; j<a.length;j++) {
 					if(i!=j) {
-<<<<<<< HEAD
-=======
-						//System.out.println(""+i +""+ j);
->>>>>>> branch 'master' of https://github.com/MrAlien98/RUTEO_VIP.git
 						ult2=a[j].getT1()[a[j].getT1().length-1];
-<<<<<<< HEAD
-=======
-						//System.out.println(ult.toString()+"  "+ult2.toString());
->>>>>>> branch 'master' of https://github.com/MrAlien98/RUTEO_VIP.git
 						temp=distances(ult2,ult);
 						if(MaxSave > temp) {
 							MaxSave=temp;
