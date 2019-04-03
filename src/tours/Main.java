@@ -378,9 +378,9 @@ public class Main {
 				ult=a[i].getT1()[a[i].getT1().length-1];
 				for(int j=0; j<a.length;j++) {
 					if(i!=j) {
-						System.out.println(""+i +""+ j);
+						//System.out.println(""+i +""+ j);
 						ult2=a[j].getT1()[a[j].getT1().length-1];
-						System.out.println(ult.toString()+"  "+ult2.toString());
+						//System.out.println(ult.toString()+"  "+ult2.toString());
 						temp=distances(ult2,ult);
 						if(MaxSave > temp) {
 							MaxSave=temp;
