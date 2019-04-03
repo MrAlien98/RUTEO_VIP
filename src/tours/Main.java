@@ -376,7 +376,15 @@ public class Main {
 				ult=a[i].getT1()[a[i].getT1().length-1];
 				for(int j=0; j<a.length;j++) {
 					if(i!=j) {
+<<<<<<< HEAD
+=======
+						//System.out.println(""+i +""+ j);
+>>>>>>> branch 'master' of https://github.com/MrAlien98/RUTEO_VIP.git
 						ult2=a[j].getT1()[a[j].getT1().length-1];
+<<<<<<< HEAD
+=======
+						//System.out.println(ult.toString()+"  "+ult2.toString());
+>>>>>>> branch 'master' of https://github.com/MrAlien98/RUTEO_VIP.git
 						temp=distances(ult2,ult);
 						if(MaxSave > temp) {
 							MaxSave=temp;
