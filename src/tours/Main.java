@@ -366,8 +366,6 @@ public class Main {
 		Double MaxSave=Double.MAX_VALUE;
 		Nodo ult2;
 		Nodo ult;
-		Nodo candidato1=null;;
-		Nodo candidato2=null;;
 		int candi1Pos=0;
 		int candi2Pos=0;
 		double temp;
@@ -378,25 +376,19 @@ public class Main {
 				ult=a[i].getT1()[a[i].getT1().length-1];
 				for(int j=0; j<a.length;j++) {
 					if(i!=j) {
-						System.out.println(""+i +""+ j);
 						ult2=a[j].getT1()[a[j].getT1().length-1];
-						System.out.println(ult.toString()+"  "+ult2.toString());
 						temp=distances(ult2,ult);
 						if(MaxSave > temp) {
 							MaxSave=temp;
-							candidato1=ult;
-							candidato2=ult2;
 							candi1Pos=i;
 							candi2Pos=j;					
 						}	
 					}
 				}				
 			}
-//			System.out.println("("+candidato1.toString()+") ("+candidato2.toString()+") : "+MaxSave+"  "+candi1Pos+","+candi2Pos);
 		}
 		return ""+MaxSave+"/"+candi1Pos+"/"+candi2Pos;
 	}
-	
 	
 	public double distances(Nodo n0, Nodo n1) {
 		double dX=n1.getPosX()-n0.getPosX();
