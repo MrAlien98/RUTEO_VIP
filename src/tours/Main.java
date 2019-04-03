@@ -91,15 +91,18 @@ public class Main {
 			ns[i]=tours[y].getT1()[c];
 			c++;
 		}
-		for(int i=0;i<tours.length;i++) {
+		for(int i=0;i<tours.length-1;i++) {
 			if(x==tours.length-1) {
 				ts[i].setT1(ns);
 				ts[i+1]=tours[i];
+				x--;
 			}else {
 				if(i==x) {
 					Tour n=new Tour(ns.length);
 					n.setT1(ns);
 					ts[i]=n;
+				}else if(i==y) {
+					ts[i]=tours[i+1];
 				}else {
 					ts[i]=tours[i];
 				}
