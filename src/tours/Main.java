@@ -25,17 +25,18 @@ public class Main {
 			newTours[i].setT1(a);
 		}
 		setTours(newTours);
-		String ajam="";
-		for(int j=0;j<tours.length;j++) {
-			for(int i=0;i<tours[j].getT1().length;i++) {
-				ajam+=tours[j].getT1()[i]+" ";
-			}
-			ajam+="\n";
-		}
-		System.out.println(ajam);
+		joinTours();
+//		String ajam="";
+//		for(int j=0;j<tours.length;j++) {
+//			for(int i=0;i<tours[j].getT1().length;i++) {
+//				ajam+=tours[j].getT1()[i]+" ";
+//			}
+//			ajam+="\n";
+//		}
+//		System.out.println(ajam);
 	}
 	
-	public void joinTours(String data) {
+	public void joinTours() {
 		String s1=saveMethod1(tours);
 		String s2=saveMethod2(tours);
 		String s3=saveMethod3(tours);
@@ -46,12 +47,12 @@ public class Main {
 		String[] s3a=s3.split("/");
 		String[] s4a=s4.split("/");
 		
-		int save1=Integer.parseInt(s1a[0]);
-		int save2=Integer.parseInt(s2a[0]);
-		int save3=Integer.parseInt(s3a[0]);
-		int save4=Integer.parseInt(s4a[0]);
+		double save1=Double.parseDouble(s1a[0]);
+		double save2=Double.parseDouble(s1a[0]);
+		double save3=Double.parseDouble(s1a[0]);
+		double save4=Double.parseDouble(s1a[0]);
 		
-		int max=greaterSave(save1, save2, save3, save4);
+		double max=greaterSave(save1, save2, save3, save4);
 		
 		if(max==save1) {
 			joinToursFF(Integer.parseInt(s1a[1]), Integer.parseInt(s1a[2]));
@@ -62,6 +63,14 @@ public class Main {
 		}else {
 			joinToursLF(Integer.parseInt(s4a[1]), Integer.parseInt(s4a[2]));
 		}
+		String aja="";
+		for(int i=0;i<tours.length;i++) {
+			for(int j=0;j<tours[i].getT1().length;j++) {
+				aja+=tours[i].getT1()[j].toString()+" ";
+			}
+			aja+="\n";
+		}
+		System.out.println(aja);
 	}
 	
 	/**
@@ -203,9 +212,9 @@ public class Main {
 		}
 	}
 	
-	public int greaterSave(int a, int b, int c, int d) {
-		int[] saves= {a, b, c, d};
-		int mayor=0;
+	public double greaterSave(double a, double b, double c, double d) {
+		double[] saves= {a, b, c, d};
+		double mayor=0;
 		for(int i=0;i<saves.length;i++) {
 			if(saves[i]>mayor) {
 				mayor=saves[i];
@@ -237,9 +246,9 @@ public class Main {
 				prim=a[i].getT1()[0];
 				for(int j=0; j<a.length;j++) {
 					if(i!=j) {
-						System.out.println(""+i +""+ j);
+//						System.out.println(""+i +""+ j);
 						prim2=a[j].getT1()[0];
-						System.out.println(prim.toString()+"  "+prim2.toString());
+//						System.out.println(prim.toString()+"  "+prim2.toString());
 						temp=distances(prim2,prim);
 						if(MaxSave > temp) {
 							MaxSave=temp;
@@ -251,7 +260,7 @@ public class Main {
 					}
 				}				
 			}
-			System.out.println("("+candidato1.toString()+") ("+candidato2.toString()+") : "+MaxSave+ " _ "+ candi1Pos +"," +candi2Pos );
+//			System.out.println("("+candidato1.toString()+") ("+candidato2.toString()+") : "+MaxSave+ " _ "+ candi1Pos +"," +candi2Pos );
 		}
 		return ""+MaxSave+"/"+candi1Pos+"/"+candi2Pos;
 	}
@@ -280,10 +289,9 @@ public class Main {
 				ult=a[i].getT1()[0];
 				for(int j=0; j<a.length;j++) {
 					if(i!=j) {
-						System.out.println(""+i +""+ j);
-						
+//						System.out.println(""+i +""+ j);					
 						prim=a[j].getT1()[a[j].getT1().length-1];
-						System.out.println(prim.toString()+"  "+ult.toString());
+//						System.out.println(prim.toString()+"  "+ult.toString());
 						temp=distances(prim,ult);
 						if(MaxSave > temp) {
 							MaxSave=temp;
@@ -295,7 +303,7 @@ public class Main {
 					}
 				}				
 			}
-			System.out.println("("+candidato1.toString()+") ("+candidato2.toString()+") : "+MaxSave+ " _ "+ candi1Pos +"," +candi2Pos );
+//			System.out.println("("+candidato1.toString()+") ("+candidato2.toString()+") : "+MaxSave+ " _ "+ candi1Pos +"," +candi2Pos );
 		}
 		return ""+MaxSave+"/"+candi1Pos+"/"+candi2Pos;
 	}
@@ -315,7 +323,7 @@ public class Main {
 		int candi1Pos=0;
 		int candi2Pos=0;
 		double temp;
-		String v="";
+//		String v="";
 		if(a==null) {
 			//System.out.println("Lo siento pero, no has ingresado nada");
 			return "Lo siento pero, no has ingresado nada";
@@ -324,11 +332,11 @@ public class Main {
 				prim=a[i].getT1()[0];
 				for(int j=0; j<a.length;j++) {
 					if(i!=j) {
-						System.out.println(""+i +""+ j);
+//						System.out.println(""+i +""+ j);
 						ult=a[j].getT1()[a[j].getT1().length-1];
-						System.out.println(prim.toString()+"  "+ult.toString());
+//						System.out.println(prim.toString()+"  "+ult.toString());
 						temp=distances(ult,prim);
-						v+=temp+" ";
+//						v+=temp+" ";
 						if(MaxSave > temp) {
 							MaxSave=temp;
 							candidato1=prim;
@@ -339,8 +347,8 @@ public class Main {
 					}
 				}				
 			}
-			System.out.println(v);
-			System.out.println("("+candidato1.toString()+") ("+candidato2.toString()+") : "+ MaxSave+ "   "+ candi1Pos +"," +candi2Pos );
+//			System.out.println(v);
+//			System.out.println("("+candidato1.toString()+") ("+candidato2.toString()+") : "+ MaxSave+ "   "+ candi1Pos +"," +candi2Pos );
 		}
 		return ""+MaxSave+"/"+candi1Pos+"/"+candi2Pos;				
 	}
@@ -381,7 +389,7 @@ public class Main {
 					}
 				}				
 			}
-			System.out.println("("+candidato1.toString()+") ("+candidato2.toString()+") : "+MaxSave+" _ "+candi1Pos+","+candi2Pos);
+//			System.out.println("("+candidato1.toString()+") ("+candidato2.toString()+") : "+MaxSave+"  "+candi1Pos+","+candi2Pos);
 		}
 		return ""+MaxSave+"/"+candi1Pos+"/"+candi2Pos;
 	}
