@@ -15,25 +15,23 @@ public class Main {
 		}
 	}
 	
+	public void verrNodos() {
+		for (int i = 0; i < nodos.length; i++) {
+			System.out.println(nodos[i].toString());
+		}
+	}
+	
 	public void joinToursOnce() {
 		Tour[] newTours=new Tour[tours.length-1];
 		for(int i=0;i<newTours.length;i++) {
-			newTours[i]=new Tour(i);
+			newTours[i]=new Tour(tours.length);
 		}
-		for(int i=0;i<newTours.length;i++) {
-			Nodo[] a= {nodos[0], nodos[i]};
+		for(int i=0;i<tours.length-1;i++) {
+			Nodo[] a= {nodos[0], nodos[i+1]};
 			newTours[i].setT1(a);
 		}
 		setTours(newTours);
 		joinTours();
-//		String ajam="";
-//		for(int j=0;j<tours.length;j++) {
-//			for(int i=0;i<tours[j].getT1().length;i++) {
-//				ajam+=tours[j].getT1()[i]+" ";
-//			}
-//			ajam+="\n";
-//		}
-//		System.out.println(ajam);
 	}
 	
 	public void joinTours() {
@@ -48,9 +46,9 @@ public class Main {
 		String[] s4a=s4.split("/");
 		
 		double save1=Double.parseDouble(s1a[0]);
-		double save2=Double.parseDouble(s1a[0]);
-		double save3=Double.parseDouble(s1a[0]);
-		double save4=Double.parseDouble(s1a[0]);
+		double save2=Double.parseDouble(s2a[0]);
+		double save3=Double.parseDouble(s3a[0]);
+		double save4=Double.parseDouble(s4a[0]);
 		
 		double max=greaterSave(save1, save2, save3, save4);
 		
@@ -94,7 +92,7 @@ public class Main {
 			ns[i]=tours[y].getT1()[c];
 			c++;
 		}
-		for(int i=0;i<tours.length-1;i++) {
+		for(int i=0;i<tours.length;i++) {
 			if(x==tours.length-1) {
 				ts[i].setT1(ns);
 				ts[i+1]=tours[i];
@@ -105,7 +103,9 @@ public class Main {
 					n.setT1(ns);
 					ts[i]=n;
 				}else if(i==y) {
-					ts[i]=tours[i+1];
+					if(i+1<tours.length) {
+						ts[i]=tours[i+1];
+					}
 				}else {
 					ts[i]=tours[i];
 				}
@@ -144,7 +144,9 @@ public class Main {
 					n.setT1(ns);
 					ts[i]=n;
 				}else if(i==y) {
-					ts[i]=tours[i+1];
+					if(i+1<tours.length) {
+						ts[i]=tours[i+1];
+					}
 				}else {
 					ts[i]=tours[i];
 				}
@@ -183,7 +185,9 @@ public class Main {
 					n.setT1(ns);
 					ts[i]=n;
 				}else if(i==y) {
-					ts[i]=tours[i+1];
+					if(i+1<tours.length) {
+						ts[i]=tours[i+1];
+					}
 				}else {
 					ts[i]=tours[i];
 				}
@@ -221,7 +225,9 @@ public class Main {
 					n.setT1(ns);
 					ts[i]=n;
 				}else if(i==y) {
-					ts[i]=tours[i+1];
+					if(i+1<tours.length) {
+						ts[i]=tours[i+1];
+					}
 				}else {
 					ts[i]=tours[i];
 				}
@@ -289,7 +295,6 @@ public class Main {
 		int candi2Pos=0;
 		double temp;
 		if(a==null) {
-			//System.out.println("Lo siento pero, no has ingresado nada");
 			return "Lo siento pero, no has ingresado nada";
 		}else {
 			for(int i=0; i<a.length;i++) {	
@@ -390,7 +395,6 @@ public class Main {
 	
 	public void setNodos(Nodo[] nodos) {
 		this.nodos = nodos;
-		joinToursOnce();
 	}
 	
 	public Tour[] getTours() {
@@ -403,30 +407,10 @@ public class Main {
 	
 	public static void main(String[] args) {
 		Main m=new Main(5);
-		Nodo[] nodos= {new Nodo(1,5),new Nodo(4,6),new Nodo(3,9),new Nodo(0,7),new Nodo(4,4),new Nodo(10,2),new Nodo(11,3),new Nodo(12,6),new Nodo(1,9)};
+		Nodo[] nodos= {new Nodo(1,5), new Nodo(4,6), new Nodo(3,9), new Nodo(0,7), new Nodo(4,4), new Nodo(10,2), new Nodo(11,3), new Nodo(12,6), new Nodo(1,9)};
 		m.setNodos(nodos);
-//		Tour[] t=new Tour[2];
-//		
-//		Nodo[] t1=new Nodo[3];
-//		t1[0]=new Nodo(5,9);
-//		t1[1]=new Nodo(6,3);
-//		t1[2]=new Nodo(5,10);
-//		
-//		Nodo[] t2=new Nodo[3];
-//		t2[0]=new Nodo(4,7);
-//		t2[1]=new Nodo(3,0);
-//		t2[2]=new Nodo(9,2);
-//		
-//		t[0]=new Tour(2);
-//		t[0].setT1(t1);
-//		
-//		t[1]=new Tour(2);
-//		t[1].setT1(t2);
-//		
-//		m.setTours(t);
-		
-//		String mensaje=m.saveMethod1(t);
-//		System.out.println(mensaje);
+		m.verrNodos();
+		m.joinToursOnce();
 	}
 	
 }

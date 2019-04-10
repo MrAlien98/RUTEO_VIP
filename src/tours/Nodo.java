@@ -4,6 +4,7 @@ public 	class Nodo{
 	
 	int posX;
 	int posY;
+	
 	public Nodo(int posX, int posY) {
 		this.posX=posX;
 		this.posY=posY;
