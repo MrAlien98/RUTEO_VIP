@@ -1,6 +1,7 @@
 package tours;
 
 public class Main {
+
 	
 	Nodo[] nodos;
 	Tour[] tours;
@@ -260,6 +261,8 @@ public class Main {
 		int candi1Pos=0;
 		int candi2Pos=0;
 		double temp;
+		double temp2;
+		double temp3;
 		if(a==null) {
 			return "Lo siento pero, no has ingresado nada";
 		}else {
@@ -268,7 +271,8 @@ public class Main {
 				for(int j=0; j<a.length;j++) {
 					if(i!=j) {
 						prim2=a[j].getT1()[0];
-						temp=distances(prim2,prim);
+						temp=distances(prim, a[i].getT1()[a[i].getT1().length-1]);
+						temp3=distances(prim2,prim2);
 						if(MaxSave > temp) {
 							MaxSave=temp;
 							candi1Pos=i;
