@@ -6,6 +6,7 @@ public class Tour{
 	
 	Nodo[] t1;
 	ArrayList<Nodo> t;
+	
 	public Tour(int size) {
 		t=new ArrayList<Nodo>();
 		t1=new Nodo[size];
