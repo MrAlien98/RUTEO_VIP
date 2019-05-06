@@ -4,20 +4,24 @@ import java.util.ArrayList;
 
 public class Tour{
 	
-	Nodo[] t1;
 	ArrayList<Nodo> t;
+	boolean taken;
 	
 	public Tour(int size) {
+		t=new ArrayList<>();
+		taken=false;
+	}
+	
+	public boolean isTaken() {
+		return taken;
+	}
+
+	public void setTaken(boolean taken) {
+		this.taken = taken;
+	}
+
+	public Tour() {
 		t=new ArrayList<Nodo>();
-		t1=new Nodo[size];
-	}
-	
-	public Nodo[] getT1() {
-		return t1;
-	}
-	
-	public void setT1(Nodo[] t1) {
-		this.t1 = t1;
 	}
 	
 	public ArrayList<Nodo> getT(){
@@ -27,4 +31,5 @@ public class Tour{
 	public void setT(ArrayList<Nodo> t) {
 		this.t=t;
 	}
+	
 }
