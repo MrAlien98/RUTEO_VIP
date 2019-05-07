@@ -23,7 +23,6 @@ public 	class Nodo{
 	public void setPosY(int posY) {
 		this.posY = posY;
 	}
-<<<<<<< HEAD
 	
 	public boolean isAdded() {
 		return added;
@@ -31,9 +30,7 @@ public 	class Nodo{
 	public void setAdded(boolean added) {
 		this.added = added;
 	}
-=======
-	//Just a test
->>>>>>> branch 'master' of https://github.com/MrAlien98/RUTEO_VIP.git
+
 	@Override
 	public String toString() {
 		return getPosX()+","+getPosY();
