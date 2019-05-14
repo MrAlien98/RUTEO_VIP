@@ -7,15 +7,15 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import tours.Controladora;
-import tours.Nodo;
+import tours.Savings;
+import tours.Node;
 
 class MainTest {
 
-	Controladora main;
+	Savings main;
 	
 	void stage1() {
-		main=new Controladora();
+		main=new Savings();
 	}
 	
 	void stage2() {
@@ -25,13 +25,13 @@ class MainTest {
 	@Test
 	void testReverse() {
 		stage1();
-		ArrayList<Nodo> arr=new ArrayList<>();
-		arr.add(new Nodo(1,5));
-		arr.add(new Nodo(6,4));
-		arr.add(new Nodo(2,8));
-		arr.add(new Nodo(10,3));
-		Nodo a=new Nodo(10,3);
-		Nodo b=new Nodo(1,5);
+		ArrayList<Node> arr=new ArrayList<>();
+		arr.add(new Node(1,5));
+		arr.add(new Node(6,4));
+		arr.add(new Node(2,8));
+		arr.add(new Node(10,3));
+		Node a=new Node(10,3);
+		Node b=new Node(1,5);
 		arr=main.reverseArrayList(arr);		
 		assertEquals(a.toString(), arr.get(0).toString());
 		assertNotEquals(a.toString(), arr.get(1).toString());
@@ -42,8 +42,8 @@ class MainTest {
 	@Test
 	void testReverse2() {
 		stage1();
-		ArrayList<Nodo> arr=new ArrayList<>();
-		arr.add(new Nodo(1,5));
+		ArrayList<Node> arr=new ArrayList<>();
+		arr.add(new Node(1,5));
 		arr=main.reverseArrayList(arr);
 		assertEquals(1, arr.size());
 	}

@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class Tour{
 	
-	ArrayList<Nodo> nodos;
+	ArrayList<Node> nodes;
 	boolean taken;
 
 	public Tour() {
-		nodos=new ArrayList<Nodo>();
+		nodes=new ArrayList<Node>();
 	}
 	
 	public boolean isTaken() {
@@ -19,12 +19,12 @@ public class Tour{
 		this.taken = taken;
 	}
 	
-	public ArrayList<Nodo> getNodos(){
-		return nodos;
+	public ArrayList<Node> getNodes(){
+		return nodes;
 	}
 	
-	public void setNodos(ArrayList<Nodo> t) {
-		this.nodos=t;
+	public void setNodos(ArrayList<Node> t) {
+		this.nodes=t;
 	}
 	
 }

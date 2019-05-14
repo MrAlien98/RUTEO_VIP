@@ -1,12 +1,12 @@
 package tours;
 
-public 	class Nodo{
+public 	class Node{
 	
 	int posX;
 	int posY;
 	boolean added;
 	
-	public Nodo(int posX, int posY) {
+	public Node(int posX, int posY) {
 		this.posX=posX;
 		this.posY=posY;
 		added=false;
