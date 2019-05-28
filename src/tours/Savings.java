@@ -70,7 +70,7 @@ public class Savings {
 		getTours().get(0).setNodos(finalTour);
 		String aja="";
 		for(int i=0;i<getTours().get(0).getNodes().size();i++) {
-			aja+="("+getTours().get(0).getNodes().get(i).toString()+") ";
+			aja+="-> ("+getTours().get(0).getNodes().get(i).getId()+") ";
 		}
 		System.out.println(aja);
 	}
@@ -95,7 +95,7 @@ public class Savings {
 		}
 		String aja="";
 		for(int i=0;i<joinedTour.size();i++) {
-			aja+=joinedTour.get(i).toString()+" ";
+			aja+="-> "+joinedTour.get(i).getId()+" ";
 		}
 		System.out.println(aja);
 		Tour tU=new Tour();
@@ -129,6 +129,11 @@ public class Savings {
 			joinedTours.add(getTours().get(y).getNodes().get(c));
 			c++;
 		}
+		String aja="";
+		for(int i=0;i<joinedTours.size();i++) {
+			aja+="-> "+joinedTours.get(i).getId()+" ";
+		}
+		System.out.println(aja);
 		Tour tU=new Tour();
 		tU.setNodos(joinedTours);
 		for(int i=0;i<getTours().size();i++) {
@@ -159,6 +164,11 @@ public class Savings {
 			joinedTours.add(getTours().get(y).getNodes().get(c));
 			c++;
 		}
+		String aja="";
+		for(int i=0;i<joinedTours.size();i++) {
+			aja+="-> "+joinedTours.get(i).getId()+" ";
+		}
+		System.out.println(aja);
 		Tour tU=new Tour();
 		tU.setNodos(joinedTours);
 		for(int i=0;i<getTours().size();i++) {
@@ -188,6 +198,11 @@ public class Savings {
 			joinedTours.add(getTours().get(y).getNodes().get(c));
 			c++;
 		}
+		String aja="";
+		for(int i=0;i<joinedTours.size();i++) {
+			aja+="-> "+joinedTours.get(i).getId()+" ";
+		}
+		System.out.println(aja);
 		Tour tU=new Tour();
 		tU.setNodos(joinedTours);
 		for(int i=0;i<getTours().size();i++) {
@@ -383,21 +398,21 @@ public class Savings {
 	public static void main(String[] args) {
 		Savings m=new Savings();
 		ArrayList<Node> nodes=new ArrayList<>();
-		nodes.add(new Node(10,2));
-		nodes.add(new Node(1,5));
-		nodes.add(new Node(4,6));
-		nodes.add(new Node(3,9));
-		nodes.add(new Node(0,7));
-		nodes.add(new Node(4,4));
-		nodes.add(new Node(11,3));
-		nodes.add(new Node(12,6));
-		nodes.add(new Node(1,9));
-		nodes.add(new Node(12,15));
-		nodes.add(new Node(1,21));
-		nodes.add(new Node(21,13));
-		nodes.add(new Node(8,2));
-		nodes.add(new Node(32,4));
-		nodes.add(new Node(6,18));
+		nodes.add(new Node(10,2, 'A'));
+		nodes.add(new Node(1,5, 'B'));
+		nodes.add(new Node(4,6, 'C'));
+		nodes.add(new Node(3,9, 'D'));
+		nodes.add(new Node(0,7, 'E'));
+		nodes.add(new Node(4,4, 'F'));
+		nodes.add(new Node(11,3, 'G'));
+		nodes.add(new Node(12,6, 'H'));
+		nodes.add(new Node(1,9, 'I'));
+		nodes.add(new Node(12,15, 'J'));
+		nodes.add(new Node(1,21, 'K'));
+		nodes.add(new Node(21,13, 'L'));
+		nodes.add(new Node(8,2, 'M'));
+		nodes.add(new Node(32,4, 'N'));
+		nodes.add(new Node(6,18, 'O'));
 		m.setNodes(nodes);
 	}
 	

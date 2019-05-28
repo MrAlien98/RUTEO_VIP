@@ -2,13 +2,17 @@ package tours;
 
 public 	class Node{
 	
-	int posX;
-	int posY;
-	boolean added;
+	private int posX;
+	private int posY;
 	
-	public Node(int posX, int posY) {
+	private char id;
+	
+	private boolean added;
+	
+	public Node(int posX, int posY, char id) {
 		this.posX=posX;
 		this.posY=posY;
+		this.setId(id);
 		added=false;
 	}
 	public int getPosX() {
@@ -24,6 +28,13 @@ public 	class Node{
 		this.posY = posY;
 	}
 	
+	public char getId() {
+		return id;
+	}
+	
+	public void setId(char id) {
+		this.id = id;
+	}
 	public boolean isAdded() {
 		return added;
 	}

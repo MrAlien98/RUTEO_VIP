@@ -26,12 +26,12 @@ class MainTest {
 	void testReverse() {
 		stage1();
 		ArrayList<Node> arr=new ArrayList<>();
-		arr.add(new Node(1,5));
-		arr.add(new Node(6,4));
-		arr.add(new Node(2,8));
-		arr.add(new Node(10,3));
-		Node a=new Node(10,3);
-		Node b=new Node(1,5);
+		arr.add(new Node(1,5, 'A'));
+		arr.add(new Node(6,4, 'B'));
+		arr.add(new Node(2,8, 'C'));
+		arr.add(new Node(10,3, 'D'));
+		Node a=new Node(10,3, 'E');
+		Node b=new Node(1,5, 'F');
 		arr=main.reverseArrayList(arr);		
 		assertEquals(a.toString(), arr.get(0).toString());
 		assertNotEquals(a.toString(), arr.get(1).toString());
@@ -43,7 +43,7 @@ class MainTest {
 	void testReverse2() {
 		stage1();
 		ArrayList<Node> arr=new ArrayList<>();
-		arr.add(new Node(1,5));
+		arr.add(new Node(1,5, 'A'));
 		arr=main.reverseArrayList(arr);
 		assertEquals(1, arr.size());
 	}
